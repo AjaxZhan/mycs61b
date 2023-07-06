@@ -1,7 +1,7 @@
 public class NBody {
     public static double readRadius(String path){
         In in = new In(path);        
-        double num_planet = in.readDouble();
+        int  num_planet = in.readDouble();
         double radius = in.readDouble();
         return radius;
     }
@@ -39,7 +39,7 @@ public class NBody {
             Double[] xForces = new Double[number];
             Double[] yForces = new Double[number];
             for(int i=0;i<number;i++){
-                xForces[i] = ps[i].calcNetForceExertedByY(ps);
+                xForces[i] = ps[i].calcNetForceExertedByX(ps);
                 yForces[i] = ps[i].calcNetForceExertedByY(ps);
             }
             for(int i=0;i<number;i++){
