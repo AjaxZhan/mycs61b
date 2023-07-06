@@ -34,10 +34,10 @@ public class NBody {
         StdDraw.enableDoubleBuffering();
 
         double t = 0;
-        double number = ps.length;
+        int number = ps.length;
         while(t<=T){
-            double[] xForces = new Double[number];
-            double[] yForces = new Double[number];
+            Double[] xForces = new Double[number];
+            Double[] yForces = new Double[number];
             for(int i=0;i<number;i++){
                 xForces[i] = ps[i].calcNetForceExertedByY(ps);
                 yForces[i] = ps[i].calcNetForceExertedByY(ps);
@@ -59,15 +59,15 @@ public class NBody {
         }
 
         //打印数据
-        StdOut.printf("%d\n", planets.length);
-        StdOut.printf("%.2e\n", radius);
-        for (int i = 0; i < planets.length; i++) {
+        StdOut.printf("%d\n", ps.length);
+        StdOut.printf("%.2e\n", r);
+        for (int i = 0; i < ps.length; i++) {
             StdOut.printf("%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n",
-            planets[i].xxPos, planets[i].yyPos, planets[i].xxVel,
-            planets[i].yyVel, planets[i].mass, planets[i].imgFileName);   
+            ps[i].xxPos, ps[i].yyPos, ps[i].xxVel,
+            ps[i].yyVel, ps[i].mass, ps[i].imgFileName);   
         }
 
-        
+
 
     }
 }
