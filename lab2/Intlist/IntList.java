@@ -82,6 +82,9 @@ public class IntList {
 
     public static IntList dcatenate(IntList A, IntList B) {
         //TODO:  fill in method
+        if(A == null){
+            return B;
+        }
         IntList ptr = A;
         while(ptr.rest!=null){
             ptr = ptr.rest;
@@ -96,6 +99,9 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
+        if(A == null){
+            return B;
+        }
         //TODO:  fill in method
         IntList res = new IntList(A.first,null);
         IntList ptr = res; // 头节点
