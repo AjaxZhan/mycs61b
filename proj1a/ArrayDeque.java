@@ -103,7 +103,7 @@ public class ArrayDeque<T>{
     /**  Prints the items in the deque from first to last, separated by a space.*/
     public void printDeque(){
         for(int i =0;i<size();i++){
-            System.out.println(get(i));
+            System.out.print(get(i) + " ");
         }
     }
     /** Removes and returns the item at the front of the deque. If no such item exists, returns null.*/
