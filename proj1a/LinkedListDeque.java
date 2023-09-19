@@ -33,16 +33,6 @@ public class LinkedListDeque<T> {
         size = 0;
     }
 
-    public LinkedListDeque(T val){
-        sentinel = new Node(28,null,null);
-        sentinel.prev = sentinel;
-        sentinel.next = sentinel;
-        sentinel.prev  = new Node(val,sentinel,sentinel);
-        sentinel.next = sentinel.prev;
-        size = 1;
-    }
-
-
     /**  Adds an item of type T to the front of the deque.*/
     public void addFirst(T item){
         sentinel.next.prev = new Node(item,sentinel,sentinel.next);
@@ -122,12 +112,4 @@ public class LinkedListDeque<T> {
         return (T)sentinel.next.getNodeRecursive(index);
     }
 
-
-
-    public static void main(String[] args) {
-        LinkedListDeque<Integer> dlist = new LinkedListDeque<>();
-        dlist.addLast(1);
-        dlist.addFirst(2);
-        dlist.printDeque();
-    }
 }

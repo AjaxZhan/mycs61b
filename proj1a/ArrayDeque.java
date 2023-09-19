@@ -6,7 +6,8 @@ public class ArrayDeque<T>{
     private T[] items;
     private int size;
     private int front;
-    private final double  FACTOR = 0.25;
+    private final double  FACTOR = 1.5;
+    private final double UFACTOR = 0.25;
 
     public ArrayDeque(){
         items = (T[]) new Object[8];
@@ -23,9 +24,20 @@ public class ArrayDeque<T>{
         return ( i + capacity()) % capacity();
     }
 
+    /** help function : check if need shorten the array*/
+    private void check(){
+        System.out.println("size = " + size);
+        System.out.println("capacity() = " + capacity());
+        // 难点：如何找到新的front
+        if((double)size() / capacity() < UFACTOR){
+            T[] arr = (T[])new Object[capacity()/2 + 1];
+            System.arraycopy(items,0,arr,0,size());
+            items = arr;
+        }
+    }
+
     /** resize */
-    private void resize(){
-        int cap = (int) (capacity() * (1+FACTOR));
+    private void resize(int cap){
         T[] arr = (T[])new Object[cap];
         System.arraycopy(items,0,arr,0,capacity());
         items = arr;
@@ -34,7 +46,7 @@ public class ArrayDeque<T>{
     /**  Adds an item of type T to the front of the deque.*/
     public void addFirst(T item){
         if(size() == capacity()){
-            resize();
+            resize((int)( capacity()* FACTOR));
         }
         front = getIndex(front-1);
         items[front] = item;
@@ -44,7 +56,7 @@ public class ArrayDeque<T>{
     /** Adds an item of type T to the back of the deque.*/
     public void addLast(T item){
         if(size() == capacity()){
-            resize();
+            resize((int)( capacity()* FACTOR));
         }
         int rear = getIndex(front+size());
         items[rear] = item;
@@ -72,6 +84,7 @@ public class ArrayDeque<T>{
         if(size() == 0){
             return null;
         }
+        check();
         T tmp = items[front];
         front = getIndex(front+1);
         size --;
@@ -82,6 +95,7 @@ public class ArrayDeque<T>{
         if(size() == 0){
             return null;
         }
+        check();
         int rear = getIndex(front+size()-1);
         T tmp = items[rear];
         size --;
@@ -98,5 +112,20 @@ public class ArrayDeque<T>{
     }
 
     public static void main(String[] args) {
+
+        ArrayDeque<Integer> ad = new ArrayDeque<>();
+        for(int i=0;i<100;i++){
+            ad.addLast(i);
+        }
+        System.out.println(ad.capacity());
+        ad.printDeque();
+        System.out.println();
+        for(int i=0;i<99;i++){
+            ad.removeFirst();
+        }
+        System.out.println(ad.capacity());
+        ad.printDeque();
+
     }
+
 }
