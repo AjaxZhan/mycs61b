@@ -85,7 +85,7 @@ public class ArrayDeque<T>{
     /** Adds an item of type T to the back of the deque.*/
     public void addLast(T item){
         if(size() == capacity()-1){
-            shrink();
+            grow();
         }
         items[last] = item;
         last = plusOne(last,capacity());
