@@ -3,14 +3,24 @@
  * @version 1.0
  */
 public class LinkedListDeque<T> {
+    /* 问题1：Node不需要写泛型 + 补充注释 */
+    /* inner class Node. */
+    private class Node{
 
-    private class Node<T>{
         public Node prev;
         public T val;
         public Node next;
+
         public Node(T val, Node prev, Node next){
             this.prev = prev;
             this.val = val;
+            this.next = next;
+        }
+
+        /* 我的哨兵节点直接给了个28，这显然没考虑到泛型*/
+        /** Constructor for Sentinel*/
+        public Node(Node prev, Node next){
+            this.prev = prev;
             this.next = next;
         }
 
@@ -27,7 +37,7 @@ public class LinkedListDeque<T> {
     private int size;
 
     public LinkedListDeque(){
-        sentinel = new Node(28,null,null);
+        sentinel = new Node(null,null);
         sentinel.prev = sentinel;
         sentinel.next = sentinel;
         size = 0;
