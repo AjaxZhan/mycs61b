@@ -47,7 +47,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         }
         rb[last] = x;
         fillCount += 1;
-        last = plusOne(last);
+        last = (last + 1) % capacity;
     }
 
     /**
@@ -62,7 +62,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
         }
         T res = rb[first];
         fillCount -=1;
-        first = plusOne(first);
+        first = (first + 1) % capacity;
         return res;
     }
 
@@ -83,20 +83,23 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     // TODO: When you get to part 5, implement the needed code to support iteration.
     private class ArrayRingBufferIterator implements Iterator<T>{
         private int ptr;
+        private int curNum;
 
         public ArrayRingBufferIterator() {
             this.ptr = first;
+            curNum = 0;
         }
 
         @Override
         public boolean hasNext() {
-            return ptr != last;
+            return curNum < fillCount;
         }
 
         @Override
         public T next() {
             T res = rb[ptr];
-            ptr = plusOne(ptr);
+            ptr = (ptr + 1) % capacity;
+            curNum +=1;
             return res;
         }
     }
