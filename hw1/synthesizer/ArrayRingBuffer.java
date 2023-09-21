@@ -12,6 +12,7 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
 
     /** Helper function : plusOne*/
     private int plusOne(int index){
+        index %= capacity();
         if(index == capacity()-1){
             return 0;
         }else{
