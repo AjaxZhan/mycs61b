@@ -10,16 +10,6 @@ public class ArrayRingBuffer<T> extends AbstractBoundedQueue<T> {
     /* Array for storing the buffer data. */
     private T[] rb;
 
-    /** Helper function : plusOne*/
-    private int plusOne(int index){
-        index %= capacity();
-        if(index == capacity()-1){
-            return 0;
-        }else{
-            return index+1;
-        }
-    }
-
     /**
      * Create a new ArrayRingBuffer with the given capacity.
      */

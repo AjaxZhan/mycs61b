@@ -9,11 +9,11 @@ public abstract class AbstractBoundedQueue<T> implements BoundedQueue<T>{
     protected int capacity;
     @Override
     public int capacity(){
-        return fillCount;
+        return capacity;
     }
     @Override
     public int fillCount(){
-        return capacity;
+        return fillCount;
     }
 }
 
